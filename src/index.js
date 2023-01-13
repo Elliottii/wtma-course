@@ -107,6 +107,5 @@ changeLanguageButton.addEventListener("click", () => {
 
 const randomDishButton = document.querySelector("#random");
 randomDishButton.addEventListener("click", () => {
-  console.log("random annos");
   document.querySelector("#random-dish").innerHTML = getRandomDish(activeMenu);
 });
