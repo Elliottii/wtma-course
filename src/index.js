@@ -1,6 +1,6 @@
-const minNumber = 4;
-const maxNumber = 100;
-const maxGuess = 20;
+const minNumber = 25;
+const maxNumber = 400;
+const maxGuess = 15;
 let startTime = Date.now();
 
 document.getElementById("min").innerHTML = minNumber;
