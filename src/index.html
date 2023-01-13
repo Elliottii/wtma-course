@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
-    <p>
-      Hello! Open the developer tools, please.<br />
-      Start by editing the files in <code>src/</code> folder.
-    </p>
+    <h1 id="title">Ruokalista</h1>
+    <div class="menu"></div>
+    <button id="sort">Järjestä</button>
+    <button id="fi-en">Vaihda kieli</button>
+    <button id="random">Valitse satunnainen ateria</button>
+    <p id="random-dish"></p>
   </body>
 </html>
