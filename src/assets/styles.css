@@ -1,3 +1,118 @@
-body {
-  margin: 10%;
+nav {
+  display: flex;
+  height: 5vh;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav li {
+  list-style: none;
+  padding-left: 2em;
+  cursor: pointer;
+}
+
+nav a {
+  color: #ab6666;
+  font-size: 2vh;
+}
+
+nav a:hover {
+  color: #43e04f;
+}
+
+input {
+  border: solid #ab6666;
+}
+
+section {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  align-items: center;
+}
+
+.img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(0px 0px, 100% 0%, 100% 100%, 20.17% 107.29%);
+}
+
+.restaurant-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
+  grid-auto-rows: 30vh;
+  gap: 2vh;
+}
+
+.restaurant {
+  border: 4px dashed #ab6666;
+  border-radius: 30px;
+  margin: 1vh;
+  padding: 5px;
+  background-color: #f0f0f0;
+  text-align: left;
+}
+
+.restaurant1 {
+  font-size: 2vh;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 30vh 20vh;
+  grid-template-areas:
+    "header header header header"
+    "side-l main main side-r"
+    "footer footer footer footer";
+  gap: 2vh;
+}
+
+.layout-item {
+  font-size: 3vh;
+}
+
+.header {
+  grid-area: header;
+  background-color: #43e04f;
+  overflow: hidden;
+  display: flex;
+}
+
+.side-left {
+  grid-area: side-l;
+}
+
+.main {
+  grid-area: main;
+  text-align: center;
+}
+
+.side-right {
+  grid-area: side-r;
+}
+
+.footer {
+  grid-area: footer;
+  align-self: center;
+}
+
+@media (max-width: 700px) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "header header"
+      "main main"
+      "side-l side-r"
+      "footer footer";
+    gap: 2vh;
+  }
 }

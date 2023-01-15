@@ -1,16 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="assets/styles.css" />
+    <meta charset="UTF-8" />
+    <title>Viikko 1</title>
+    <link href="/assets/styles.css" rel="stylesheet" />
   </head>
   <body>
-    <h1 id="title">Ruokalista</h1>
-    <div class="menu"></div>
-    <button id="sort">Järjestä</button>
-    <button id="fi-en">Vaihda kieli</button>
-    <button id="random">Valitse satunnainen ateria</button>
-    <p id="random-dish"></p>
+    <nav>
+      <ul>
+        <li><a>Etusivu</a></li>
+        <li><a>Ruokalistat</a></li>
+        <li><a>Ravintolat</a></li>
+        <li><a>Yhteystiedot</a></li>
+      </ul>
+      <input placeholder="Hae ravintolan nimellä..." />
+    </nav>
+    <div class="layout">
+      <div class="layout-item header">
+        <section>
+          <h1>Lounari.</h1>
+          <h2>Missä tänään syötäisiin?</h2>
+        </section>
+        <img class="img" src="assets/logo.jpg" alt="lounari" />
+      </div>
+      <div class="layout-item side-left">
+        <button id="sort">Järjestä</button>
+        <button id="fi-en">Vaihda kieli</button>
+        <button id="random">Valitse satunnainen ateria</button>
+        <p id="random-dish"></p>
+      </div>
+      <div class="layout-item main">
+        <p>
+          Mitä tänään syötäisiin? Tuttu tarina ennen lounashetkeä. Palvelu etsii
+          lähelläsi olevat lounaspaikat, sekä näyttää niiden päivittäisen
+          lounaslistan. Viikottaiset lounaslistat ovat myös käytettävissäsi.
+          Pääset niihin klikkaamalla ravintolan logoa.
+        </p>
+      </div>
+      <div class="layout-item side-right"></div>
+      <div class="layout-item footer">
+        <div class="restaurant-container">
+          <div class="restaurant restaurant1 menu"></div>
+          <div class="restaurant restaurant2">Ravintola 2</div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

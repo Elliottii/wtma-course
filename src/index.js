@@ -1,23 +1,26 @@
-const coursesEn = [
-  "Hamburger, cream sauce and poiled potates",
-  "Goan style fish curry and whole grain rice",
-  "Vegan Chili sin carne and whole grain rice",
-  "Broccoli puree soup, side salad with two napas",
-  "Lunch baguette with BBQ-turkey filling",
-  "Cheese / Chicken / Vege / Halloum burger and french fries",
-];
-const coursesFi = [
-  "Jauhelihapihvi, ruskeaa kermakastiketta ja keitettyä perunaa",
-  "Goalaista kalacurrya ja täysjyväriisiä",
-  "Vegaaninen Chili sin carne ja täysjyväriisi",
-  "Parsakeittoa,lisäkesalaatti kahdella napaksella",
-  "Lounaspatonki BBQ-kalkkuna täytteellä",
-  "Juusto / Kana / Kasvis / Halloumi burgeri ja ranskalaiset",
-];
+import JSONMenu from "./menu.json";
 
+const menuCourses = Object.values(JSONMenu.courses);
 let lang = "fi";
-let activeMenu = coursesFi;
+let activeMenu = [];
 let order = "";
+
+/**
+ * Creates menu from JSON
+ * @param {string} lang - Selected language
+ * @returns
+ */
+const createMenu = (lang) => {
+  activeMenu = [];
+  for (const dish of menuCourses) {
+    if (lang === "en") {
+      activeMenu.push(dish.title_en);
+    } else if (lang === "fi") {
+      activeMenu.push(dish.title_fi);
+    }
+  }
+  return activeMenu;
+};
 
 /**
  * Renders menu content to html page
@@ -27,7 +30,6 @@ const renderMenu = (menu) => {
   const menuBox = document.querySelector(".menu");
   menuBox.innerHTML = "";
   const menuList = document.createElement("ul");
-
   for (const dish of menu) {
     const li = document.createElement("li");
     li.textContent = dish;
@@ -36,7 +38,7 @@ const renderMenu = (menu) => {
   menuBox.append(menuList);
 };
 
-renderMenu(activeMenu);
+renderMenu(createMenu(lang));
 
 /**
  * Sort menu alphabetically
@@ -59,20 +61,16 @@ const sortMenu = (menu, order) => {
  */
 const changeLanguage = (language) => {
   if (language === "fi") {
-    activeMenu = coursesFi;
-    document.querySelector("#title").innerHTML = "Ruokalista";
     document.querySelector("#sort").innerHTML = "Järjestä";
     document.querySelector("#fi-en").innerHTML = "Vaihda kieli";
     document.querySelector("#random").innerHTML = "Valitse satunnainen ateria";
   } else if (language === "en") {
-    activeMenu = coursesEn;
-    document.querySelector("#title").innerHTML = "Menu";
     document.querySelector("#sort").innerHTML = "Sort";
     document.querySelector("#fi-en").innerHTML = "Change language";
     document.querySelector("#random").innerHTML = "Pick random dish";
   }
   lang = language;
-  renderMenu(activeMenu);
+  renderMenu(createMenu(lang));
 };
 
 /**
@@ -81,7 +79,9 @@ const changeLanguage = (language) => {
  * @returns random dish item
  */
 const getRandomDish = (menu) => {
-  const randomIndex = Math.floor(Math.random() * menu.length);
+  const randomIndex = Math.floor(
+    Math.random() * Object.keys(JSONMenu.courses).length
+  );
   return menu[randomIndex];
 };
 
