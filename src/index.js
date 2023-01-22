@@ -1,5 +1,5 @@
 const minNumber = 1;
-const maxNumber = 1000000000;
+const maxNumber = 10000000000;
 const maxGuess = 100;
 
 let startTime = '';
@@ -141,16 +141,16 @@ function testingAlgorithm() {
   while (num > 0) {
     if (mid > testRandomNumber) {
       max = mid - 1;
-      mid = Math.round((max + min - 1) / 2);
+      mid = Math.round((max + min) / 2);
     } else if (mid < testRandomNumber) {
       min = mid + 1;
-      mid = Math.round((max + min + 1) / 2);
+      mid = Math.round((max + min) / 2);
     } else if (mid === testRandomNumber) {
       testGuesses.push(testCount);
       testCount = 0;
       min = minNumber;
       max = maxNumber;
-      mid = Math.round(max + min - 1) / 2;
+      mid = Math.round(max + min) / 2;
       testRandomNumber = Math.floor(
         Math.random() * (maxNumber - minNumber + 1) + minNumber
       );
