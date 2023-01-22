@@ -5,41 +5,12 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
-
   <body>
-    <div class="container">
-      <div class="item item1">
-        <h1>Number guessing game</h1>
-        <p>
-          We have selected a random number between <span id="min"></span> and
-          <span id="max"></span>. See if you can guess it in
-          <span id="maxGuess"></span> turns or fewer. We'll tell you if your
-          guess was too high or too low.
-        </p>
-      </div>
-      <div class="item item2">
-        <label>Enter a guess:</label>
-        <input type="number" id="guessField" class="guessField" />
-        <input type="submit" value="Submit guess" class="guessSubmit" />
-        <input type="submit" value="Let 'AI' try it" class="algorithmSubmit" />
-        <div class="resultParas">
-          <p class="guesses"></p>
-          <p class="lastResult"></p>
-          <p class="lowOrHi"></p>
-        </div>
-      </div>
-      <div class="item item3">
-        <label>Enter test multiplier:</label>
-        <input type="number" id="testMultiplier" class="testMultiplierField" />
-        <input
-          type="submit"
-          value="Test 'AI' multiple time"
-          class="testAlgorithmSubmit"
-        />
-        <div>
-          <p class="testResults"></p>
-        </div>
-      </div>
-    </div>
+    <h1 id="title">Ruokalista</h1>
+    <div class="menu"></div>
+    <button id="sort">Järjestä</button>
+    <button id="fi-en">Vaihda kieli</button>
+    <button id="random">Valitse satunnainen ateria</button>
+    <p id="random-dish"></p>
   </body>
 </html>
