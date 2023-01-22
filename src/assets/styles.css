@@ -9,9 +9,9 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    ". header header ."
-    ". main main ."
-    "footer footer footer footer";
+    '. header header .'
+    '. main main .'
+    '.footer footer .';
   gap: 2vh;
 }
 
@@ -30,6 +30,9 @@ body {
 .item2 {
   grid-area: main;
 }
+.item3 {
+  grid-area: footer;
+}
 
 @media (max-width: 700px) {
   .item {
@@ -43,8 +46,8 @@ body {
   .container {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "header header"
-      "main main "
-      "footer footer";
+      'header header'
+      'main main '
+      'footer footer';
   }
 }
