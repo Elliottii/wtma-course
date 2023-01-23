@@ -1,33 +1,42 @@
-const courses = [
-  { name: 'Lingonberry jam', price: 4.0 },
-  { name: 'Mushroom and bean casserole', price: 5.5 },
-  { name: 'Chili-flavoured wheat', price: 3.0 },
-  { name: 'Vegetarian soup', price: 4.8 },
-  { name: 'Pureed root vegetable soup with smoked cheese', price: 8.0 },
-];
-const originalCourses = [...courses];
+let code = [];
+const text = document.querySelector('.text');
+/**
+ * Timer erase array and text 10 seconds.
+ */
+const timer = setInterval(() => {
+  code = [];
+  text.textContent = '';
+}, 10000);
 
-let course = 'Mushroom and bean casserole';
-
-const validateCourse = (course) => {
-  const regexpPattern =
-    /^[A-ZÖÄÅ][\s\d a-zöäå \_\-\.\:\;\(\)\{\}\\\/\[\] ]{3,63}$/;
-  return regexpPattern.test(course);
-};
-console.log('RegExp test ->', 'String:', course, validateCourse(course));
-
-console.log('Original courses:', originalCourses);
-
-const sortedCourses = courses.sort((a, b) => {
-  return b.price - a.price;
+/**
+ * Event adding keypresses to an array.
+ * After that it check out the array containing the "secret" hello word.
+ * If the array contains the hello word, alert pop up and array will be erased.
+ */
+document.addEventListener('keypress', (event) => {
+  code.push(event.key);
+  if (code.join('').includes('hello')) {
+    alert('hello there! next try typing lorem and see what happens');
+    code = [];
+  } else if (code.join('').includes('lorem')) {
+    text.textContent =
+      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet incidunt' +
+      'perferendis maxime ipsam. Fugiat enim eum harum velit dicta vitae quasi ' +
+      'reiciendis officia vero. Corporis rerum tenetur incidunt. Minima, fuga. Soluta, ' +
+      'eveniet consequuntur. Excepturi, mollitia facilis consectetur rem cupiditate ' +
+      'laboriosam perferendis tempora vel similique voluptatum enim, omnis sed libero ' +
+      'totam obcaecati quos fugit commodi voluptates unde animi quia deleniti. Iste! ' +
+      'Quod sit veniam aliquid, iste ut voluptate consequatur, nemo eius adipisci qui ' +
+      'delectus possimus quaerat excepturi ullam, soluta quis. Accusamus omnis magni ex ' +
+      'dolorem et repellendus corrupti reprehenderit optio ullam?';
+    code = [];
+  }
 });
-console.log('Sorted by price:', sortedCourses);
 
-const filteredCourses = courses.filter((course) => course.price < 5);
-console.log('Filtered prices under 5€:', filteredCourses);
+const xCord = document.querySelector('#xCord');
+const yCord = document.querySelector('#yCord');
 
-const totalPriceCourses = courses.reduce(
-  (acc, courses) => acc + courses.price,
-  0
-);
-console.log('All courses total price:', totalPriceCourses);
+document.addEventListener('dblclick', (event) => {
+  xCord.textContent = event.x;
+  yCord.textContent = event.y;
+});
