@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Viikko 2</title>
-    <link href="assets/styles.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Slab:wght@400;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a>Etusivu</a></li>
-        <li><a>Ruokalistat</a></li>
-        <li><a>Ravintolat</a></li>
-        <li><a>Yhteystiedot</a></li>
-      </ul>
-      <span>
-        <form id='search-form'><label for="search" id='search-img'>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
+    viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve">
     <symbol viewBox="-27.299 -39.024 54.598 78.047">
         <path fill="none"
             d="M11.157,34.02c-1.275-1.85-3.408-3.026-5.733-3.026c-2.13,0-4.118,0.985-5.424,2.607   c-1.306-1.622-3.294-2.607-5.423-2.607c-2.325,0-4.457,1.176-5.734,3.026c-1.275-1.85-3.408-3.026-5.733-3.026   c-1.913,0-3.648,0.776-4.908,2.029v-66.474c1.26,1.253,2.995,2.029,4.908,2.029c2.325,0,4.458-1.176,5.733-3.026   c1.277,1.85,3.409,3.026,5.734,3.026c2.129,0,4.117-0.986,5.423-2.607c1.306,1.622,3.294,2.607,5.424,2.607   c2.325,0,4.458-1.176,5.733-3.026c1.277,1.85,3.409,3.026,5.734,3.026c1.913,0,3.647-0.776,4.907-2.028v66.473   c-1.26-1.253-2.994-2.028-4.907-2.028C14.567,30.995,12.435,32.17,11.157,34.02z" />
@@ -89,59 +67,3 @@
         </g>
     </g>
 </svg>
-        </label><input placeholder='Hae nimellä'></form>
-    </nav>
-    <div class="layout">
-      <div class="layout-item header">
-        <section>
-          <h1>Lounari.</h1>
-          <h2>Missä tänään syötäisiin?</h2>
-        </section>
-        <img class="img" src="./assets/logo.jpg" alt="lounari" />
-      </div>
-      <div class="layout-item side-left"></div>
-      <div class="layout-item main">
-        <p>
-          Mitä tänään syötäisiin? Tuttu tarina ennen lounashetkeä. Palvelu etsii
-          lähelläsi olevat lounaspaikat, sekä näyttää niiden päivittäisen
-          lounaslistan. Viikottaiset lounaslistat ovat myös käytettävissäsi.
-          Pääset niihin klikkaamalla ravintolan logoa.
-        </p>
-      </div>
-      <div class="layout-item side-right"></div>
-      <div class="layout-item footer">
-        <div class="restaurant-container">
-          <div class="restaurant ">
-            <img src='./assets/Sodexo-Logo.jpg' width='100px' height='100px'>
-            <div>
-              <div>
-              <h2>Metropolia Myyrmäki</h2>
-            </div>
-            <div>
-              <h1>KOTIRUOKA 1</h1>
-              <p>Jauhelihalasagnette</p>
-            </div>
-            <div>
-              <h1>KOTIRUOKA 2</h1>
-              <p>Kalkkunapastakastiketta ja täysjyväpastaa</p>
-            </div>
-            <div>
-              <h1>VEGAANI</h1>
-              <p>Vegaani aurinkokuivattutomaatti-soijapastaa</p>
-            </div>
-            <div>
-              <h1>KASVISKEITTO</h1>
-              <p>Tomaatti-korianterikeittoa, lisäkesalaatti kahdella napaksella</p>
-            </div>
-            <div>
-              <h1>JÄLKIRUOKA</h1>
-              <p>Hedelmäjogurttia</p>
-            </div></div>
-
-          </div>
-          <div class="restaurant restaurant2"><h1>Ravintola 2</h1></div>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
