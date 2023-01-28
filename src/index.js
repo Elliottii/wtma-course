@@ -1,13 +1,33 @@
 let code = [];
+const alertText = document.querySelector('.alert');
 const text = document.querySelector('.text');
+const touch = document.querySelector('.touch');
+let touchCount = 0;
+let mouseMove = 0;
+let keyPress = 0;
+
+document.addEventListener('mousemove', () => {
+  mouseMove = 1;
+});
+
+document.addEventListener('keypress', () => {
+  keyPress = 1;
+});
+
 /**
- * Timer erase array and text 10 seconds.
+ * Alert when browsing 15 seconds, then erase array and text.
+ * Idle alert if mouse didn't move or any keys pressed
  */
 const timer = setInterval(() => {
   code = [];
+  alertText.textContent = 'Hurry up!';
   text.textContent = '';
-}, 10000);
-
+  if ((mouseMove || keyPress) == 0) {
+    alertText.textContent = 'Hurry up idler!';
+  }
+  mouseMove = 0;
+  keyPress = 0;
+}, 15000);
 /**
  * Event adding keypresses to an array.
  * After that it check out the array containing the "secret" hello word.
@@ -39,4 +59,9 @@ const yCord = document.querySelector('#yCord');
 document.addEventListener('dblclick', (event) => {
   xCord.textContent = event.x;
   yCord.textContent = event.y;
+});
+
+document.addEventListener('touchend', (event) => {
+  touchCount++;
+  touch.textContent = 'You touched the screen ' + touchCount + ' times.';
 });
