@@ -1,6 +1,6 @@
-{
-  "name": "wtmp-starter",
-  "version": "1.0.7",
+ {
+  "name": "wtmp-examples-2023",
+  "version": "1.0.0",
   "description": "Simple boilerplate for webpack powered projects",
   "private": true,
   "scripts": {
@@ -12,7 +12,6 @@
   "author": "eelik",
   "license": "ISC",
   "devDependencies": {
-    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "eslint": "^7.32.0",
     "eslint-webpack-plugin": "^3.2.0",
@@ -20,6 +19,8 @@
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "webpack-pwa-manifest": "^4.3.0",
+    "workbox-webpack-plugin": "^6.5.4"
   }
 }

@@ -1,6 +1,6 @@
 import Sodexo from './modules/SodexoData';
 import Fazer from './modules/FazerData';
-
+import pwaApplyServiceWorkers from './modules/pwaModule';
 // Global variables
 let lang = 'fi';
 let menuContainers = [];
@@ -103,3 +103,5 @@ const init = () => {
 };
 
 init();
+
+pwaApplyServiceWorkers.serviceWorkers();
