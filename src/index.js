@@ -1,56 +1,49 @@
-import JSONMenu from "./menu.json";
+import Sodexo from './modules/SodexoData';
+import Fazer from './modules/FazerData';
 
-const menuCourses = Object.values(JSONMenu.courses);
-let lang = "fi";
-let activeMenu = [];
-let order = "";
-
-/**
- * Creates menu from JSON
- * @param {string} lang - Selected language
- * @returns
- */
-const createMenu = (lang) => {
-  activeMenu = [];
-  for (const dish of menuCourses) {
-    if (lang === "en") {
-      activeMenu.push(dish.title_en);
-    } else if (lang === "fi") {
-      activeMenu.push(dish.title_fi);
-    }
-  }
-  return activeMenu;
-};
+// Global variables
+let lang = 'fi';
+let menuContainers = [];
+let activeMenus = [];
 
 /**
  * Renders menu content to html page
  * @param {Array} menu - array of dishes
  */
-const renderMenu = (menu) => {
-  const menuBox = document.querySelector(".menu");
-  menuBox.innerHTML = "";
-  const menuList = document.createElement("ul");
+const renderMenu = (menu, targetElem) => {
+  const menuContainer = targetElem;
+  menuContainer.innerHTML = '';
+  const list = document.createElement('ul');
   for (const dish of menu) {
-    const li = document.createElement("li");
+    const li = document.createElement('li');
     li.textContent = dish;
-    menuList.append(li);
+    list.append(li);
   }
-  menuBox.append(menuList);
+  menuContainer.append(list);
+
+  /**
+   * Buttons & event handlers
+   */
+  const sortButton = document.querySelector('#sort');
+  sortButton.addEventListener('click', () => {
+    renderMenu(sortMenu(menu), targetElem);
+  });
 };
 
-renderMenu(createMenu(lang));
-
 /**
- * Sort menu alphabetically
+ * Sorts menu alphapetically
  * @param {Array} menu - Array of dishes
- * @param {string} order - "asc" or "desc"
+ * @param {string} order - 'asc' or 'desc'
  * @returns sorted menu array
  */
-const sortMenu = (menu, order) => {
-  if (order === "desc") {
+// TODO: fix for multiple menus
+const sortMenu = (menu, order = 'asc') => {
+  // create a copy of the menu for sorting
+  // don't change the original arrays's order
+  menu = [...menu];
+  menu.sort();
+  if (order === 'desc') {
     menu.reverse();
-  } else {
-    menu.sort();
   }
   return menu;
 };
@@ -60,52 +53,53 @@ const sortMenu = (menu, order) => {
  * @param {string} language
  */
 const changeLanguage = (language) => {
-  if (language === "fi") {
-    document.querySelector("#sort").innerHTML = "Järjestä";
-    document.querySelector("#fi-en").innerHTML = "Vaihda kieli";
-    document.querySelector("#random").innerHTML = "Valitse satunnainen ateria";
-  } else if (language === "en") {
-    document.querySelector("#sort").innerHTML = "Sort";
-    document.querySelector("#fi-en").innerHTML = "Change language";
-    document.querySelector("#random").innerHTML = "Pick random dish";
+  if (language === 'fi') {
+    activeMenus[0] = Sodexo.coursesFi;
+    activeMenus[1] = Fazer.coursesFi;
+  } else if (language === 'en') {
+    activeMenus[0] = Sodexo.coursesEn;
+    activeMenus[1] = Fazer.coursesEn;
   }
   lang = language;
-  renderMenu(createMenu(lang));
+  renderAll();
 };
 
 /**
- * Get a random item from an array of dishes
- * @param {Array} menu -Array of dishes
+ * Get a random dish fron an array
+ * @param {Array} menu - Array of dishes
  * @returns random dish item
  */
 const getRandomDish = (menu) => {
-  const randomIndex = Math.floor(
-    Math.random() * Object.keys(JSONMenu.courses).length
-  );
+  const randomIndex = Math.floor(Math.random() * menu.length);
   return menu[randomIndex];
 };
 
-const sortButton = document.querySelector("#sort");
-sortButton.addEventListener("click", () => {
-  if (order === "asc") {
-    order = "desc";
+const langButton = document.querySelector('#fi-en');
+langButton.addEventListener('click', () => {
+  if (lang === 'fi') {
+    changeLanguage('en');
   } else {
-    order = "asc";
+    changeLanguage('fi');
   }
-  renderMenu(sortMenu(activeMenu, order));
+});
+const randButton = document.querySelector('#random');
+randButton.addEventListener('click', () => {
+  alert(getRandomDish(activeMenus[0]));
 });
 
-const changeLanguageButton = document.querySelector("#fi-en");
-changeLanguageButton.addEventListener("click", () => {
-  if (lang === "fi") {
-    lang = "en";
-  } else {
-    lang = "fi";
+const renderAll = () => {
+  for (const [index, menu] of activeMenus.entries()) {
+    renderMenu(menu, menuContainers[index]);
   }
-  changeLanguage(lang);
-});
+};
 
-const randomDishButton = document.querySelector("#random");
-randomDishButton.addEventListener("click", () => {
-  document.querySelector("#random-dish").innerHTML = getRandomDish(activeMenu);
-});
+/**
+ * App initalization
+ */
+const init = () => {
+  activeMenus = [Sodexo.coursesFi, Fazer.coursesFi];
+  menuContainers = document.querySelectorAll('.restaurant');
+  renderAll();
+};
+
+init();
