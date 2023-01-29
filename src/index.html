@@ -94,8 +94,8 @@
     <div class="layout">
       <div class="layout-item header">
         <section>
-          <h1>Lounari.</h1>
-          <h2>Missä tänään syötäisiin?</h2>
+          <h1 data-type="parallax" data-speed="80">Lounari.</h1>
+          <h2 data-type="parallax" data-speed="-80">Missä tänään syötäisiin?</h2>
         </section>
         <img class="img" src="./assets/logo.jpg" alt="lounari" />
       </div>
@@ -121,7 +121,25 @@
           <div class="restaurant restaurant2"><img src='./assets/Fazer-Logo.png' width='100px' height='100px'></div>
         </div>
       </div>
-    <div class='layout-item footer'></div>
+    <div class='layout-item footer'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi, voluptatum repudiandae quaerat fugiat minus repellendus earum modi! Iste voluptate minima ex eveniet, veritatis corrupti delectus veniam perferendis. Harum, fugiat provident.
+    Asperiores ea veniam fugiat incidunt expedita! Quaerat iusto blanditiis officiis sed deserunt quae consequuntur nobis nostrum quas repellendus assumenda illum, cupiditate aut temporibus inventore mollitia maxime tempore nam magni. Ipsam?
+    Minus quisquam quae iste, rerum, consectetur inventore labore, quo nisi nostrum minima similique reiciendis. Fugiat earum itaque nostrum, dolore ad, tempora perspiciatis explicabo corporis facere dicta, perferendis aliquam velit sed.</div>
     </div>
   </body>
+  <script>window.addEventListener('scroll', (evt) => {
+        let top = this.pageYOffset;
+
+        let layers = document.querySelectorAll("[data-type='parallax'");
+
+        let layer, speed, xPos;
+        for (let i = 0; i < layers.length; i++) {
+          layer = layers[i];
+          speed = layer.getAttribute('data-speed');
+          let xPos = -((top * speed) / 100);
+          layer.setAttribute(
+            'style',
+            'transform: translate3d('+xPos + 'px,0px, 0px)'
+          );
+        }
+      });</script>
 </html>
