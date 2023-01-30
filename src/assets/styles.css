@@ -150,6 +150,10 @@ section h2 {
 .restaurant-area {
   grid-area: restaurant;
 }
+
+.restaurant-area ul {
+  display: block;
+}
 .footer {
   grid-area: footer;
   align-self: center;
