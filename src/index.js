@@ -1,6 +1,6 @@
 import Sodexo from './modules/SodexoData';
 import Fazer from './modules/FazerData';
-//import pwaApplyServiceWorkers from './modules/pwaModule';
+import pwaApplyServiceWorkers from './modules/pwaModule';
 
 let menuContainers = [];
 let activeMenus = [];
@@ -38,4 +38,4 @@ const init = () => {
 
 init();
 
-// //pwaApplyServiceWorkers.serviceWorkers();
+pwaApplyServiceWorkers.serviceWorkers();
