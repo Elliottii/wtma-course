@@ -1,0 +1,73 @@
+nav {
+  display: none;
+}
+
+header {
+  margin: 0;
+  padding-left: 2vw;
+}
+.info-container-text {
+  font-size: 1.75em;
+  font-weight: 400;
+  text-align: center;
+}
+.restaurant-container {
+  grid-template-columns: 1fr;
+}
+.restaurant-logo > img {
+  width: 12vw;
+  height: 12vw;
+  cursor: pointer;
+}
+#banner-text {
+  display: none;
+}
+#banner-slogan {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2em;
+  font-weight: 400;
+}
+.topnav {
+  font-family: 'Roboto Slab', serif;
+  font-size: 3.75em;
+  font-weight: 800;
+  display: block;
+  overflow: hidden;
+  background-color: var(--main-color);
+  position: relative;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+  display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: var(--main-color);
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+/* Style the active link (or home/logo) */
+.active {
+  background-color: var(--main-color);
+  color: white;
+}
