@@ -1,18 +1,32 @@
+/**
+ * Main JS file
+ *
+ * @author: eelik
+ */
 import Sodexo from './modules/SodexoData';
 import Fazer from './modules/FazerData';
 import pwaApplyServiceWorkers from './modules/pwaModule';
+
 // Global variables
 let lang = 'fi';
-let menuContainers = [];
-let activeMenus = [];
+const restaurants = [
+  { name: 'Myrtsi', id: 152, type: 'sodexo' },
+  { name: 'Karaportti', id: 3208, type: 'fazer' },
+  { name: 'Myllypuro', id: 158, type: 'sodexo' },
+];
 
 /**
  * Renders menu content to html page
  * @param {Array} menu - array of dishes
+ * @param {Object} targetElem - target DOM element
  */
-const renderMenu = (menu, targetElem) => {
-  const menuContainer = targetElem;
-  menuContainer.innerHTML = '';
+const renderMenu = (menu, title, targetElem) => {
+  const menuContainer = document.createElement('div');
+  menuContainer.classList = 'restaurant';
+  targetElem.append(menuContainer);
+  const h3 = document.createElement('h3');
+  h3.textContent = title;
+  menuContainer.append(h3);
   const list = document.createElement('ul');
   for (const dish of menu) {
     const li = document.createElement('li');
@@ -20,60 +34,37 @@ const renderMenu = (menu, targetElem) => {
     list.append(li);
   }
   menuContainer.append(list);
-
-  /**
-   * Buttons & event handlers
-   */
-  const sortButton = document.querySelector('#sort');
-  sortButton.addEventListener('click', () => {
-    renderMenu(sortMenu(menu), targetElem);
-  });
 };
 
 /**
- * Sorts menu alphapetically
- * @param {Array} menu - Array of dishes
- * @param {string} order - 'asc' or 'desc'
- * @returns sorted menu array
+ * Iterates through restaurants array and render data to page
  */
-// TODO: fix for multiple menus
-const sortMenu = (menu, order = 'asc') => {
-  // create a copy of the menu for sorting
-  // don't change the original arrays's order
-  menu = [...menu];
-  menu.sort();
-  if (order === 'desc') {
-    menu.reverse();
+const renderAllMenus = async () => {
+  const menuWrapper = document.querySelector('.restaurant-container');
+  menuWrapper.innerHTML = '';
+  for (const restaurant of restaurants) {
+    let menu;
+    if (restaurant.type === 'sodexo') {
+      menu = await Sodexo.getDailyMenu(restaurant.id, lang);
+    } else if (restaurant.type === 'fazer') {
+      menu = await Fazer.getDailyMenu(restaurant.id, lang);
+    }
+    renderMenu(menu, restaurant.name, menuWrapper);
   }
-  return menu;
 };
 
 /**
  * Change UI language
  * @param {string} language
  */
-const changeLanguage = (language) => {
-  if (language === 'fi') {
-    activeMenus[0] = Sodexo.coursesFi;
-    activeMenus[1] = Fazer.coursesFi;
-  } else if (language === 'en') {
-    activeMenus[0] = Sodexo.coursesEn;
-    activeMenus[1] = Fazer.coursesEn;
-  }
+const changeLanguage = async (language) => {
   lang = language;
-  renderAll();
+  renderAllMenus();
 };
 
 /**
- * Get a random dish fron an array
- * @param {Array} menu - Array of dishes
- * @returns random dish item
+ * Buttons & event handlers
  */
-const getRandomDish = (menu) => {
-  const randomIndex = Math.floor(Math.random() * menu.length);
-  return menu[randomIndex];
-};
-
 const langButton = document.querySelector('#fi-en');
 langButton.addEventListener('click', () => {
   if (lang === 'fi') {
@@ -82,26 +73,13 @@ langButton.addEventListener('click', () => {
     changeLanguage('fi');
   }
 });
-const randButton = document.querySelector('#random');
-randButton.addEventListener('click', () => {
-  alert(getRandomDish(activeMenus[0]));
-});
-
-const renderAll = () => {
-  for (const [index, menu] of activeMenus.entries()) {
-    renderMenu(menu, menuContainers[index]);
-  }
-};
 
 /**
  * App initalization
  */
-const init = () => {
-  activeMenus = [Sodexo.coursesFi, Fazer.coursesFi];
-  menuContainers = document.querySelectorAll('.restaurant');
-  renderAll();
+const init = async () => {
+  renderAllMenus();
 };
-
 init();
 
 pwaApplyServiceWorkers.serviceWorkers();

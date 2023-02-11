@@ -1,10 +1,36 @@
-import Menu from '../mock-data/sodexo.json';
-// console.log('menu from json', Menu.courses);
+/**
+ * Module for Sodexo menu data parsing
+ *
+ * @author eelik
+ * @module Sodexo
+ */
 
-// Convert Menu.courses object to array and extract title_* values only
-const coursesEn = Object.values(Menu.courses).map((course) => course.title_en);
-const coursesFi = Object.values(Menu.courses).map((course) => course.title_fi);
+import { doFetch, getWeekdayIndex } from './network';
 
-const Sodexo = { coursesEn, coursesFi };
+const weeklyUrl = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/';
+
+/**
+ * Gets daily menu from Sodexo API
+ *
+ * @param {string} lang - menu language 'fi'/'en'
+ * @returns Menu array
+ */
+const getDailyMenu = async (restaurantId, lang) => {
+  try {
+    const weeklyMenu = await doFetch(weeklyUrl + restaurantId);
+    const menu = weeklyMenu.mealdates[getWeekdayIndex()];
+    const coursesEn = Object.values(menu.courses).map(
+      (course) => course.title_en
+    );
+    const coursesFi = Object.values(menu.courses).map(
+      (course) => course.title_fi
+    );
+    return lang === 'en' ? coursesEn : coursesFi;
+  } catch (error) {
+    throw new Error('getDailyMenu error: ' + error);
+  }
+};
+
+const Sodexo = { getDailyMenu };
 
 export default Sodexo;
